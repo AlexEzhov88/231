@@ -55,15 +55,14 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-                         @PathVariable("id") long id) {
+    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult ) {
         if(bindingResult.hasErrors()) {
             return "edit";
         }
-
-        userService.edit(id, user);
+        userService.update(user);
         return "redirect:/users";
     }
+
 
     @DeleteMapping("{id}")
     public String delete(@PathVariable("id") long id) {
